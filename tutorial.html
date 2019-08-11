@@ -13327,6 +13327,25 @@ div#notebook {
 <span class="n">plot1_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">common_filtering</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">structure</span><span class="p">,</span> <span class="n">li_concentration</span><span class="p">,</span> <span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">what</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">visualize</span><span class="p">,</span><span class="n">figure</span><span class="p">,</span><span class="n">configuration</span><span class="p">,</span><span class="n">energy_baseline</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;/Users/levislap/nbinteract-tutorial&#39;</span><span class="p">)</span>
+    <span class="o">%</span><span class="k">run</span> conf_checker.py
+    <span class="o">%</span><span class="k">run</span> out_checker.py
+    <span class="o">%</span><span class="k">run</span> energy_check.py
+    <span class="o">%</span><span class="k">run</span> baseline_energy.py
+    <span class="o">%</span><span class="k">run</span> magnetic_check.py
+    <span class="o">%</span><span class="k">run</span> baseline_energy.py
+    <span class="o">%</span><span class="k">run</span> visualization_energy_difference.py
+    <span class="o">%</span><span class="k">run</span> visualization_lattice.py
+    <span class="o">%</span><span class="k">run</span> lattice_check.py
+    <span class="o">%</span><span class="k">run</span> lattice_angles_check.py
+    <span class="o">%</span><span class="k">run</span> visualization.py
+    <span class="o">%</span><span class="k">run</span> show_structure.py
+    <span class="o">%</span><span class="k">run</span> magnetic_plot.py
+    <span class="o">%</span><span class="k">run</span> voltage.py
+    <span class="o">%</span><span class="k">run</span> voltage_visualization.py
+    
+    
     <span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
     <span class="n">plot_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
     <span class="n">plot1_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
