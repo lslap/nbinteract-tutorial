@@ -13180,15 +13180,15 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">voltage</span> <span class="k">import</span> <span class="n">voltage</span>
 <span class="kn">from</span> <span class="nn">voltage_visualization</span> <span class="k">import</span> <span class="n">voltage_visualization</span>
 
-<span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
-<span class="n">plot_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
-<span class="n">plot1_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+<span class="c1">#output = widgets.Output()</span>
+<span class="c1">#plot_output = widgets.Output()</span>
+<span class="c1">#plot1_output = widgets.Output()</span>
 
 <span class="k">def</span> <span class="nf">common_filtering</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">structure</span><span class="p">,</span> <span class="n">li_concentration</span><span class="p">,</span> <span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">what</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">visualize</span><span class="p">,</span><span class="n">figure</span><span class="p">,</span><span class="n">configuration</span><span class="p">,</span><span class="n">energy_baseline</span><span class="p">):</span>
   
     <span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
-    <span class="n">plot_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
-    <span class="n">plot1_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+    <span class="c1">#plot_output.clear_output()</span>
+    <span class="c1">#plot1_output.clear_output()</span>
     
     <span class="k">if</span> <span class="p">(</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">):</span>
         <span class="n">common_filter</span> <span class="o">=</span> <span class="s1">&#39;Please chose a material.&#39;</span>
