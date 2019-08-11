@@ -13162,12 +13162,115 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;/Users/levislap/nbinteract-tutorial&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">run</span> conf_checker.py
+<span class="o">%</span><span class="k">run</span> out_checker.py
+<span class="o">%</span><span class="k">run</span> energy_check.py
+<span class="o">%</span><span class="k">run</span> baseline_energy.py
+<span class="o">%</span><span class="k">run</span> magnetic_check.py
+<span class="o">%</span><span class="k">run</span> baseline_energy.py
+<span class="o">%</span><span class="k">run</span> visualization_energy_difference.py
+<span class="o">%</span><span class="k">run</span> visualization_lattice.py
+<span class="o">%</span><span class="k">run</span> lattice_check.py
+<span class="o">%</span><span class="k">run</span> lattice_angles_check.py
+<span class="o">%</span><span class="k">run</span> visualization.py
+<span class="o">%</span><span class="k">run</span> show_structure.py
+<span class="o">%</span><span class="k">run</span> magnetic_plot.py
+<span class="o">%</span><span class="k">run</span> voltage.py
+<span class="o">%</span><span class="k">run</span> voltage_visualization.py
+</pre></div>
 
-<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+    </div>
+</div>
+</div>
 
-<span class="n">interact</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">common_filtering</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">structure</span><span class="p">,</span> <span class="n">li_concentration</span><span class="p">,</span> <span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">what</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">visualize</span><span class="p">,</span><span class="n">figure</span><span class="p">,</span><span class="n">configuration</span><span class="p">,</span><span class="n">energy_baseline</span><span class="p">):</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">):</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="s1">&#39;Please chose a material.&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="s1">&#39;Great choice&#39;</span>
+    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">common_filter</span><span class="p">)</span>
+
+<span class="n">interact</span><span class="p">(</span><span class="n">common_filtering</span><span class="p">,</span> 
+
+<span class="c1"># All the defenitions of the dropdown menu&#39;s</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;None&quot;</span><span class="p">,</span><span class="s2">&quot;Li2MnO3&quot;</span><span class="p">,</span> <span class="s2">&quot;Li2IrO3&quot;</span><span class="p">,</span><span class="s2">&quot;Li2MnSnO3&quot;</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Material:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
+<span class="n">structure</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prim&#39;</span><span class="p">,</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span><span class="s1">&#39;O1&#39;</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cell: (only for Li2MnO3)&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="n">li_concentration</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;0.5&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Li conc:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="n">functional_list</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pbeU&quot;</span><span class="p">,</span> <span class="s2">&quot;scan&quot;</span> <span class="p">,</span> <span class="s2">&quot;hse&quot;</span><span class="p">,(</span><span class="s2">&quot;pbeU&quot;</span><span class="p">,</span> <span class="s2">&quot;scan&quot;</span><span class="p">),(</span><span class="s2">&quot;pbeU&quot;</span><span class="p">,</span> <span class="s2">&quot;scan&quot;</span> <span class="p">,</span> <span class="s2">&quot;hse&quot;</span><span class="p">)],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Functional:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="n">u_values</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="n">U_value</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">u_values</span><span class="p">,</span> 
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;U-value: (only for pbeU)&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span>
+<span class="p">),</span>
+
+<span class="n">what</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Final Energy&quot;</span><span class="p">,</span> <span class="s2">&quot;Magnetic moments&quot;</span><span class="p">,</span><span class="s2">&quot;lattice parameters&quot;</span><span class="p">,</span><span class="s2">&quot;lattice angles&quot;</span><span class="p">,</span><span class="s2">&quot;voltage&quot;</span><span class="p">,</span><span class="s2">&quot;out - required accuracy&quot;</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;What?:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="n">conf</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="c1">#options= conf_checker(models,li_concentrations,structures),</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Conf:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="n">energy_baseline</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Discharged&quot;</span><span class="p">,</span> <span class="s2">&quot;Absolute&quot;</span><span class="p">,</span><span class="s2">&quot;Minimum&quot;</span><span class="p">],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Baseline for Final Energy:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
+           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Conf: All.&#39;</span><span class="p">,),</span>
+
+<span class="n">visualize</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
+           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Unlock: Visualize structure.&#39;</span><span class="p">,),</span>
+
+<span class="n">figure</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
+           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Unlock: Figures.&#39;</span><span class="p">,)</span>
+<span class="p">)</span>
+<span class="n">output</span>
 </pre></div>
 
     </div>
@@ -13192,87 +13295,20 @@ div#notebook {
 
 </div>
 
-</div>
-</div>
+<div class="output_area">
 
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
   </div>
 
-  
+</div>
 
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-
-<span class="c1"># All the defenitions of the dropdown menu&#39;s</span>
-<span class="n">dropdown_model</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;None&quot;</span><span class="p">,</span><span class="s2">&quot;Li2MnO3&quot;</span><span class="p">,</span> <span class="s2">&quot;Li2IrO3&quot;</span><span class="p">,</span><span class="s2">&quot;Li2MnSnO3&quot;</span><span class="p">],</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Material:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">}</span>
-<span class="n">dropdown_structure</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prim&#39;</span><span class="p">,</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span><span class="s1">&#39;O1&#39;</span><span class="p">],</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cell: (only for Li2MnO3)&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">dropdown_li_concentration</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;0.5&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">],</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Li conc:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">dropdown_functional_list</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pbeU&quot;</span><span class="p">,</span> <span class="s2">&quot;scan&quot;</span> <span class="p">,</span> <span class="s2">&quot;hse&quot;</span><span class="p">,(</span><span class="s2">&quot;pbeU&quot;</span><span class="p">,</span> <span class="s2">&quot;scan&quot;</span><span class="p">),(</span><span class="s2">&quot;pbeU&quot;</span><span class="p">,</span> <span class="s2">&quot;scan&quot;</span> <span class="p">,</span> <span class="s2">&quot;hse&quot;</span><span class="p">)],</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Functional:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">u_values</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">dropdown_U_value</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span><span class="n">u_values</span><span class="p">,</span> 
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;U-value: (only for pbeU)&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="n">style</span>
-<span class="p">)</span>
-
-<span class="n">dropdown_what</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Final Energy&quot;</span><span class="p">,</span> <span class="s2">&quot;Magnetic moments&quot;</span><span class="p">,</span><span class="s2">&quot;lattice parameters&quot;</span><span class="p">,</span><span class="s2">&quot;lattice angles&quot;</span><span class="p">,</span><span class="s2">&quot;voltage&quot;</span><span class="p">,</span><span class="s2">&quot;out - required accuracy&quot;</span><span class="p">],</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;What?:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">dropdown_conf</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="c1">#options= conf_checker(models,li_concentrations,structures),</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Conf:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">dropdown_energy_baseline</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Discharged&quot;</span><span class="p">,</span> <span class="s2">&quot;Absolute&quot;</span><span class="p">,</span><span class="s2">&quot;Minimum&quot;</span><span class="p">],</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Baseline for Final Energy:&#39;</span><span class="p">,</span>
-    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">checkbox_configuration</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
-           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Conf: All.&#39;</span><span class="p">,)</span>
-
-<span class="n">checkbox_visualize</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
-           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Unlock: Visualize structure.&#39;</span><span class="p">,)</span>
-
-<span class="n">checkbox_figure</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
-           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Unlock: Figures.&#39;</span><span class="p">,)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -13287,64 +13323,81 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+<span class="n">plot_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+<span class="n">plot1_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">common_filtering</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">structure</span><span class="p">,</span> <span class="n">li_concentration</span><span class="p">,</span> <span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">what</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">visualize</span><span class="p">,</span><span class="n">figure</span><span class="p">,</span><span class="n">configuration</span><span class="p">,</span><span class="n">energy_baseline</span><span class="p">):</span>
     <span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+    <span class="n">plot_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+    <span class="n">plot1_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+    
     <span class="k">if</span> <span class="p">(</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">):</span>
         <span class="n">common_filter</span> <span class="o">=</span> <span class="s1">&#39;Please chose a material.&#39;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">common_filter</span> <span class="o">=</span> <span class="s1">&#39;Great choice&#39;</span>
-    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">common_filter</span><span class="p">)</span>
-        
-<span class="k">def</span> <span class="nf">dropdown_model_eventhandler</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
-    <span class="n">common_filtering</span><span class="p">(</span><span class="n">change</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">conf</span><span class="p">):</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="s2">&quot;This material in combination with this structure does not have this configuration. Try a lower number.&quot;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">model</span> <span class="o">!=</span> <span class="s1">&#39;Li2MnO3&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">structure</span> <span class="o">==</span> <span class="s1">&#39;O1&#39;</span><span class="p">):</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="s1">&#39;The O1-stacking is only an option for Li2MnO3.&#39;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;Final Energy&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">model</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">conf</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">header</span><span class="p">,</span><span class="n">energy</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy_check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">energy</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">,</span><span class="n">floatfmt</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;.1f&quot;</span><span class="p">,</span><span class="s2">&quot;.2f&quot;</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;out - required accuracy&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">model</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">conf</span><span class="p">):</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="n">out_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">configuration</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;Magnetic moments&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">model</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">conf</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">header</span><span class="p">,</span><span class="n">results</span><span class="p">]</span> <span class="o">=</span> <span class="n">magnetic_check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">)</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">,</span> <span class="n">floatfmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;lattice parameters&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">model</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">conf</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">header</span><span class="p">,</span><span class="n">lattice_parameters_length</span><span class="p">]</span> <span class="o">=</span> <span class="n">lattice_check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">)</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">lattice_parameters_length</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">,</span> <span class="n">floatfmt</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;.1f&quot;</span><span class="p">,</span><span class="s2">&quot;.5f&quot;</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;lattice angles&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">model</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">conf</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">header</span><span class="p">,</span><span class="n">lattice_parameters_angles</span><span class="p">]</span> <span class="o">=</span> <span class="n">lattice_angles_check</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">)</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">lattice_parameters_angles</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">,</span> <span class="n">floatfmt</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;.1f&quot;</span><span class="p">,</span><span class="s2">&quot;.5f&quot;</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;voltage&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">model</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">conf</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">header</span><span class="p">,</span><span class="n">result</span><span class="p">]</span> <span class="o">=</span> <span class="n">voltage</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="n">common_filter</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">,</span> <span class="n">floatfmt</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;.1f&quot;</span><span class="p">,</span><span class="s2">&quot;.2f&quot;</span><span class="p">))</span>
     
-
-<span class="n">dropdown_model</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">dropdown_model_eventhandler</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
-
-<span class="n">item_layout</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="s1">&#39;10px 10px 10px 0&#39;</span><span class="p">)</span>
-
-<span class="n">left_box</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">dropdown_model</span><span class="p">,</span><span class="n">dropdown_li_concentration</span><span class="p">,</span><span class="n">dropdown_structure</span><span class="p">,</span><span class="n">dropdown_what</span><span class="p">],</span><span class="n">layout</span><span class="o">=</span><span class="n">item_layout</span><span class="p">)</span>
-<span class="n">middle_box</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">dropdown_functional_list</span><span class="p">,</span><span class="n">dropdown_U_value</span><span class="p">,</span><span class="n">dropdown_conf</span><span class="p">,</span><span class="n">dropdown_energy_baseline</span><span class="p">],</span><span class="n">layout</span><span class="o">=</span><span class="n">item_layout</span><span class="p">)</span>
-<span class="n">right_box</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">checkbox_configuration</span><span class="p">,</span><span class="n">checkbox_visualize</span><span class="p">,</span><span class="n">checkbox_figure</span><span class="p">],</span><span class="n">layout</span><span class="o">=</span><span class="n">item_layout</span><span class="p">)</span>
-<span class="n">input_widgets</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">left_box</span><span class="p">,</span><span class="n">middle_box</span><span class="p">,</span> <span class="n">right_box</span><span class="p">],</span><span class="n">layout</span><span class="o">=</span><span class="n">item_layout</span><span class="p">)</span>
-
-<span class="n">tab</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Tab</span><span class="p">([</span><span class="n">output</span><span class="p">],</span><span class="n">layout</span><span class="o">=</span><span class="n">item_layout</span><span class="p">)</span>
-
-
-<span class="n">tab</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Tab</span><span class="p">([</span><span class="n">output</span><span class="p">])</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Output&#39;</span><span class="p">)</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Visualize Structure&#39;</span><span class="p">)</span>
-<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Figures&#39;</span><span class="p">)</span>
-
-<span class="c1">#AppLayout(header=&#39;Header&#39;)</span>
-<span class="n">dashboard</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">input_widgets</span><span class="p">,</span> <span class="n">tab</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">dashboard</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;out - required accuracy&#39;</span><span class="p">):</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">common_filter</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">common_filter</span><span class="p">)</span>
+            
+    <span class="k">with</span> <span class="n">plot_output</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">conf</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This material in combination with this structure does not have this configuration. Try a lower number.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">U_value</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">functional_list</span> <span class="o">==</span> <span class="s1">&#39;pbeU&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cannot visualize multiple files. Change the U-value setting.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please chose a material.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">visualize</span> <span class="o">!=</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;If you want to viualize a structure check the Visualize Structure checkbox.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">visualize</span> <span class="o">==</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="n">visualization</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">)</span>
+              
+    <span class="k">with</span> <span class="n">plot1_output</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please chose a material.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conf_checker</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">conf</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This material in combination with this structure does not have this configuration. Try a lower number.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">figure</span> <span class="o">!=</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;If you want to viualize a structure check the Figures checkbox.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">U_value</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The figures are only interesting for all U-values.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;voltage&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">figure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">U_value</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The figures are only interesting for all U-values.&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;lattice parameters&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">figure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="n">visualization_lattice</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;lattice angles&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">figure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="n">visualization_lattice</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;Final Energy&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">figure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="n">visualization_energy_difference</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">configuration</span><span class="p">,</span><span class="n">energy_baseline</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;Magnetic moments&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">figure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">):</span>
+            <span class="n">magnetic_plot</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">what</span> <span class="o">==</span> <span class="s1">&#39;voltage&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">figure</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">U_value</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+            <span class="n">voltage_visualization</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">structure</span><span class="p">,</span><span class="n">li_concentration</span><span class="p">,</span><span class="n">functional_list</span><span class="p">,</span><span class="n">U_value</span><span class="p">,</span><span class="n">conf</span><span class="p">,</span><span class="n">configuration</span><span class="p">)</span>
+        
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
 </div>
 </div>
 
@@ -13425,6 +13478,8 @@ div#notebook {
            <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Unlock: Figures.&#39;</span><span class="p">,)</span>
 <span class="p">)</span>
 <span class="n">output</span>
+<span class="n">plot_output</span>
+<span class="n">plot1_output</span>
 </pre></div>
 
     </div>
