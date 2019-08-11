@@ -13235,6 +13235,8 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">out_checker</span> <span class="k">import</span> <span class="n">out_checker</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span>
 
 <span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
 <span class="n">plot_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
@@ -13342,21 +13344,22 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">common_filtering</span><span class="p">,</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">u_values</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
 
+<span class="n">interact</span><span class="p">(</span><span class="n">common_filtering</span><span class="p">,</span> 
+
+         
 <span class="c1"># All the defenitions of the dropdown menu&#39;s</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
     <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;None&quot;</span><span class="p">,</span><span class="s2">&quot;Li2MnO3&quot;</span><span class="p">,</span> <span class="s2">&quot;Li2IrO3&quot;</span><span class="p">,</span><span class="s2">&quot;Li2MnSnO3&quot;</span><span class="p">],</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Material:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">),</span>
-
-<span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
+         
 <span class="n">structure</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
     <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prim&#39;</span><span class="p">,</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span><span class="s1">&#39;O1&#39;</span><span class="p">],</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cell: (only for Li2MnO3)&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
 <span class="p">),</span>
 
 <span class="n">li_concentration</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
@@ -13371,12 +13374,11 @@ div#notebook {
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">),</span>
 
-<span class="n">u_values</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+
 <span class="n">U_value</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
     <span class="n">options</span><span class="o">=</span><span class="n">u_values</span><span class="p">,</span> 
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;U-value: (only for pbeU)&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="n">style</span>
 <span class="p">),</span>
 
 <span class="n">what</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
@@ -13396,7 +13398,6 @@ div#notebook {
     <span class="n">options</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Discharged&quot;</span><span class="p">,</span> <span class="s2">&quot;Absolute&quot;</span><span class="p">,</span><span class="s2">&quot;Minimum&quot;</span><span class="p">],</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Baseline for Final Energy:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
 <span class="p">),</span>
 
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span>
